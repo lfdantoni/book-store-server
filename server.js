@@ -2,17 +2,83 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
+const fs = require('fs')
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
 
+const createError = (message) => ({message});
+
+const validateNewBook = book => {
+
+  if(!book.title) {
+    return createError('Title is required');
+  }
+
+  const rawdata = fs.readFileSync('db.json');
+  const data = JSON.parse(rawdata);
+
+  if(data.books.find(bookSaved => bookSaved.title.toLowerCase() === book.title.toLowerCase())) {
+    return createError('Title is already saved');
+  }
+
+  return null;
+}
+
+const validateEditBook = (bookId, book) => {
+
+  if(!book.title) {
+    return createError('Title is required');
+  }
+
+  const rawdata = fs.readFileSync('db.json');
+  const data = JSON.parse(rawdata);
+  const bookSaved = data.books.find(bs => bs.id === bookId);
+
+  if(bookSaved.title !== book.title &&
+    data.books.find(bs =>
+      bs.id !== bookId &&
+      bs.title.toLowerCase() === book.title.toLowerCase())) {
+    return createError('Title is already saved');
+  }
+
+  return null;
+}
+
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
-server.use((req, res, next) => {
+server.use('/books', (req, res, next) => {
+  let error = null;
+
   if (req.method === 'POST') {
-    req.body.id = new Date().getTime().toString();
+    error = validateNewBook(req.body);
+
+    if (!error) {
+      req.body.id = new Date().getTime().toString();
+    }
+    
   }
+
+  if(error) {
+    return res.status(400).jsonp(error);
+  }
+
+  // Continue to JSON Server router
+  next()
+})
+
+server.use('/books/:id', (req, res, next) => {
+  let error = null;
+
+  if (req.method === 'PUT') {
+    error = validateEditBook(req.params.id, req.body);
+  }
+
+  if(error) {
+    return res.status(400).jsonp(error);
+  }
+
   // Continue to JSON Server router
   next()
 })
@@ -22,3 +88,4 @@ server.use(router)
 server.listen(process.env.PORT || 3010, () => {
   console.log('JSON Server is running')
 });
+
