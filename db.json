@@ -90,19 +90,6 @@
       ],
       "stock": 5,
       "price": 10.5
-    },
-    {
-      "isbn": "978-3-16-148412-0",
-      "title": "TEST TEST",
-      "author": "BYRON KELLY",
-      "cover": "http://loremipsum.themerex.net/wp-content/uploads/2016/07/product-5.jpg",
-      "categories": [
-        "art-photo",
-        "child-books"
-      ],
-      "stock": 9,
-      "price": 10.5,
-      "id": "1596397491160"
     }
   ],
   "categories": [
