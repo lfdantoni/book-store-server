@@ -94,18 +94,22 @@
   ],
   "categories": [
     {
+      "id": "1",
       "code": "art-photo",
       "display": "Art & Photography"
     },
     {
+      "id": "2",
       "code": "bio",
       "display": "Biographies"
     },
     {
+      "id": "3",
       "code": "cook",
       "display": "CookBooks"
     },
     {
+      "id": "4",
       "code": "child-books",
       "display": "Children's Books"
     }
