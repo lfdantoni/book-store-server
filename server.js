@@ -7,7 +7,7 @@ const fs = require('fs')
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
 
-const createError = (message) => ({message});
+const createError = (message, statusCode) => ({message, statusCode});
 
 const validateNewBook = book => {
 
@@ -35,6 +35,10 @@ const validateEditBook = (bookId, book) => {
   const data = JSON.parse(rawdata);
   const bookSaved = data.books.find(bs => bs.id === bookId);
 
+  if(!bookSaved) {
+    return createError('Book does not exist', 404);
+  }
+
   if(bookSaved.title !== book.title &&
     data.books.find(bs =>
       bs.id !== bookId &&
@@ -61,7 +65,7 @@ server.use('/books', (req, res, next) => {
   }
 
   if(error) {
-    return res.status(400).jsonp(error);
+    return res.status(error.statusCode || 400).jsonp(error);
   }
 
   // Continue to JSON Server router
@@ -76,7 +80,7 @@ server.use('/books/:id', (req, res, next) => {
   }
 
   if(error) {
-    return res.status(400).jsonp(error);
+    return res.status(error.statusCode || 400).jsonp(error);
   }
 
   // Continue to JSON Server router
