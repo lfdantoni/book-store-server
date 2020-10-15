@@ -132,6 +132,7 @@
     {
       "id": 1,
       "name": "Leo",
+      "updatedAt": 1602725607852,
       "cart": [
         {
           "id": "123123",
@@ -150,10 +151,12 @@
     {
       "id": 2,
       "name": "Juan",
+      "updatedAt": 1602725607852,
       "cart": []
     },
     {
       "name": "Pedro",
+      "updatedAt": 1602725607852,
       "cart": [
         {
           "id": "123123",
