@@ -113,5 +113,56 @@
       "code": "child-books",
       "display": "Children's Books"
     }
+  ],
+  "products": [
+    {
+      "id": "pan",
+      "description": "Pan (Kg)"
+    },
+    {
+      "id": "harina",
+      "description": "Harina (Kg)"
+    },
+    {
+      "id": "leche",
+      "description": "Leche (Unidad)"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Leo",
+      "cart": [
+        {
+          "id": "123123",
+          "product": "harina",
+          "note": "test Noteas7dss22asd",
+          "quantity": 33
+        },
+        {
+          "id": "12336666123",
+          "product": "harina",
+          "note": "test 888s22asd",
+          "quantity": 3
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Juan",
+      "cart": []
+    },
+    {
+      "name": "Pedro",
+      "cart": [
+        {
+          "id": "123123",
+          "product": "harina",
+          "note": "test Noteas777dasd",
+          "quantity": 33
+        }
+      ],
+      "id": 3
+    }
   ]
 }
