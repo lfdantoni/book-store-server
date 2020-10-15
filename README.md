@@ -10,7 +10,8 @@ The following link allows you to import the api collection (<a href="https://lea
 
 https://www.getpostman.com/collections/33bc492256ddccb4e32e
 
-
+### PWA Products List
+https://www.getpostman.com/collections/dff34091258a1d2c5dab
 
 ## Scripts
 
