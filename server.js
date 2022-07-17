@@ -2,6 +2,7 @@ const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
+const {jsonpRoutes} = require('./jsonp')
 const fs = require('fs')
 
 // Set default middlewares (logger, static, cors and no-cache)
@@ -86,6 +87,9 @@ server.use('/books/:id', (req, res, next) => {
   // Continue to JSON Server router
   next()
 })
+
+// jsonp routes
+server.use('/jsonp', jsonpRoutes)
 
 // Use default router
 server.use(router)
