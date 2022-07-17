@@ -12,6 +12,7 @@ exports.jsonpRoutes = (req, resp) => {
     return resp.end(responseStrJs)
   }
 
+  // invalid operation
   return resp.status(400).send({
     message: 'Invalid operation!'
  });
