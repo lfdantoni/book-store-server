@@ -50,10 +50,12 @@ const validateEditBook = (bookId, book) => {
   return null;
 }
 
+const basePath = '/api';
+
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
-server.use('/books', (req, res, next) => {
+server.use(`/api/books`, (req, res, next) => {
   let error = null;
 
   if (req.method === 'POST') {
@@ -73,7 +75,7 @@ server.use('/books', (req, res, next) => {
   next()
 })
 
-server.use('/books/:id', (req, res, next) => {
+server.use(`/books/:id`, (req, res, next) => {
   let error = null;
 
   if (req.method === 'PUT') {
@@ -94,7 +96,8 @@ server.use('/jsonp', jsonpRoutes)
 // Add this before server.use(router)
 // needed for Vercel
 server.use(jsonServer.rewriter({
-  '/api/*': '/$1'
+  '/api/*': '/$1',
+  '/blog/:resource/:id/show': '/:resource/:id'
 }))
 
 // Use default router
