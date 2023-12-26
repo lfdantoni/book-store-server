@@ -91,6 +91,11 @@ server.use('/books/:id', (req, res, next) => {
 // jsonp routes
 server.use('/jsonp', jsonpRoutes)
 
+server.use(jsonServer.rewriter({
+  '/*': '/$1',
+  '/blog/:resource/:id/show': '/:resource/:id'
+}))
+
 // Use default router
 server.use(router)
 
