@@ -92,9 +92,9 @@ server.use('/books/:id', (req, res, next) => {
 server.use('/jsonp', jsonpRoutes)
 
 // Add this before server.use(router)
+// needed for Vercel
 server.use(jsonServer.rewriter({
-  '/api/*': '/$1',
-  '/blog/:resource/:id/show': '/:resource/:id'
+  '/api/*': '/$1'
 }))
 
 // Use default router
