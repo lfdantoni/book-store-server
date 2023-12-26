@@ -2,9 +2,12 @@ const fs = require('fs')
 const path = require("path")
 const jsonServer = require('json-server')
 const server = jsonServer.create()
-const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 const {jsonpRoutes} = require('./jsonp')
+
+
+const data = JSON.parse(fs.readFileSync(path.join("db.json")))
+const router = jsonServer.router(data)
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
