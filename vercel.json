@@ -1,14 +1,14 @@
 {
   "functions": {
-    "index.js": {
+    "api/index.js": {
       "memory": 1024,
       "includeFiles": "db.json"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "index.js"
+      "source": "/(.*)",
+      "destination": "api/index.js"
     }
   ]
 }
