@@ -77,7 +77,7 @@ server.use(`${basePath}/books`, (req, res, next) => {
   next()
 })
 
-server.use(`/books/:id`, (req, res, next) => {
+server.use(`${basePath}/books/:id`, (req, res, next) => {
   let error = null;
 
   if (req.method === 'PUT') {
