@@ -2,9 +2,9 @@
   "name": "book-store-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node api/local-server.js",
+    "start": "node api/index.js",
     "dev": "nodemon api/local-server.js"
   },
   "keywords": [],
