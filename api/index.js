@@ -1,9 +1,10 @@
+const fs = require('fs')
+const path = require("path")
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 const {jsonpRoutes} = require('./jsonp')
-const fs = require('fs')
 
 // Set default middlewares (logger, static, cors and no-cache)
 server.use(middlewares)
@@ -16,7 +17,7 @@ const validateNewBook = book => {
     return createError('Title is required');
   }
 
-  const rawdata = fs.readFileSync('db.json');
+  const rawdata = JSON.parse(fs.readFileSync(path.join("db.json")))
   const data = JSON.parse(rawdata);
 
   if(data.books.find(bookSaved => bookSaved.title.toLowerCase() === book.title.toLowerCase())) {
@@ -32,7 +33,7 @@ const validateEditBook = (bookId, book) => {
     return createError('Title is required');
   }
 
-  const rawdata = fs.readFileSync('db.json');
+  const rawdata = JSON.parse(fs.readFileSync(path.join("db.json")))
   const data = JSON.parse(rawdata);
   const bookSaved = data.books.find(bs => bs.id === bookId);
 
