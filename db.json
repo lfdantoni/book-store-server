@@ -1,10 +1,9 @@
 {
   "books": [
     {
-      "id": "1",
       "isbn": "978-3-16-148410-0",
       "title": "Everybody's Fool: A novel",
-      "author": "BYRON KELLY",
+      "author": "BYRON KELLY TEST",
       "cover": "http://loremipsum.themerex.net/wp-content/uploads/2016/07/product-5.jpg",
       "categories": [
         "art-photo",
@@ -12,7 +11,8 @@
         "cook"
       ],
       "stock": 9,
-      "price": 10.5
+      "price": 10.5,
+      "id": "1"
     },
     {
       "id": "2",

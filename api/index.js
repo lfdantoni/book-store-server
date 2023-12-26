@@ -17,8 +17,7 @@ const validateNewBook = book => {
     return createError('Title is required');
   }
 
-  const rawdata = JSON.parse(fs.readFileSync(path.join("db.json")))
-  const data = JSON.parse(rawdata);
+  const data = JSON.parse(fs.readFileSync(path.join("db.json")))
 
   if(data.books.find(bookSaved => bookSaved.title.toLowerCase() === book.title.toLowerCase())) {
     return createError('Title is already saved');
@@ -33,8 +32,7 @@ const validateEditBook = (bookId, book) => {
     return createError('Title is required');
   }
 
-  const rawdata = JSON.parse(fs.readFileSync(path.join("db.json")))
-  const data = JSON.parse(rawdata);
+  const data = JSON.parse(fs.readFileSync(path.join("db.json")))
   const bookSaved = data.books.find(bs => bs.id === bookId);
 
   if(!bookSaved) {
@@ -56,7 +54,7 @@ const basePath = '/api';
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
-server.use(`/api/books`, (req, res, next) => {
+server.use(`/books`, (req, res, next) => {
   let error = null;
 
   if (req.method === 'POST') {
